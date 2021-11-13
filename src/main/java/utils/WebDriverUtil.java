@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class WebDriverUtil {
@@ -13,6 +15,13 @@ public class WebDriverUtil {
         chromeOptions.setHeadless(isHeadlessSetTrue());
         WebDriverManager.chromedriver().setup();
         return new ChromeDriver(chromeOptions);
+    }
+
+    public static FirefoxDriver getFirefoxDriver() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setHeadless(isHeadlessSetTrue());
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver(firefoxOptions);
     }
 
     public static SafariDriver getSafariDriver() {

@@ -5,6 +5,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import sharedObjects.StepContext;
 
+import java.util.Objects;
+
 public class Hooks {
 
     private final StepContext stepContext;
@@ -21,6 +23,8 @@ public class Hooks {
 
     @After
     public void after() {
-        this.stepContext.webDriver.quit();
+        if (Objects.nonNull(this.stepContext.webDriver)) {
+            this.stepContext.webDriver.quit();
+        }
     }
 }
