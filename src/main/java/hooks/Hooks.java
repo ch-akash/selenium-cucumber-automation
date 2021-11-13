@@ -2,7 +2,12 @@ package hooks;
 
 import driver.DriverManager;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.messages.types.Source;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import sharedObjects.StepContext;
 
 import java.util.Objects;
@@ -20,6 +25,14 @@ public class Hooks {
         stepContext.webDriver = DriverManager.getDriver();
     }
 
+    @After(value = "@browser")
+    public void afterStep(Scenario scenario) {
+        if (scenario.isFailed()) {
+            final byte[] screenshot = ((TakesScreenshot) this.stepContext.webDriver)
+                    .getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "failure_image");
+        }
+    }
 
     @After
     public void after() {

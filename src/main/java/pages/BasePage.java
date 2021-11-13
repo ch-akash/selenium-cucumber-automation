@@ -24,6 +24,10 @@ public class BasePage {
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    protected void waitForFrameToLoadThenSwitchToIt(String frameLocator) {
+        webDriverWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+    }
+
     protected void waitForElementVisibility(By element) {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }

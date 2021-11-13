@@ -29,8 +29,7 @@ public class PracticePage extends BasePage {
     }
 
     public void switchToFrame() {
-        this.waitForElementVisibility(radioButton1);
-        this.driver.switchTo().frame(iFrameId);
+        this.waitForFrameToLoadThenSwitchToIt(iFrameId);
     }
 
     public WebElement selectProductFromTable(String productDescription) {
